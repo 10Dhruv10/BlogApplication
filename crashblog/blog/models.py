@@ -10,3 +10,11 @@ class PostBlog(models.Model):
     
     class Meta:
         ordering = ("-created_at",)           #latest one is first i.e. descending
+        
+class Comment(models.Model):
+    post = models.ForeignKey(PostBlog, related_name='comments', on_delete = models.CASCADE )
+    name = models.CharField(max_length = 255)
+    email = models.EmailField()
+    body = models.TextField()
+    created_at = models.DateTimeField(default = timezone.now)
+    
